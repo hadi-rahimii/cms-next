@@ -21,23 +21,6 @@ const EditModal = ({ hideEditModal }) => {
                             spellcheck="false"
                         />
                     </div>
-                    <div className={styles.input_field}>
-                        <span><FontAwesomeIcon icon={faCashRegister} /> </span>
-                        <input
-                            type="text" 
-                            placeholder="قیمت دوره"
-                            spellcheck="false"
-                        />
-                    </div>
-                    <div className={styles.input_field}>
-                        <span><FontAwesomeIcon icon={faUser} /></span>
-                        <input
-                            type="text" 
-                            placeholder="مدرس دوره"
-                            spellcheck="false"
-                        />
-                    </div>
-
                     <button type="submit" className={styles.update_btn }>
                         اپدیت دوره
                     </button>
