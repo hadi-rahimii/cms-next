@@ -11,7 +11,7 @@ import {
 import styles from "@/styles/Modal.module.css";
 import { useState } from "react";
 import swal from "sweetalert";
-const AddCourseModal = ({ hideAddCourseModal }) => {
+const AddCourseModal = ({ hideAddCourseModal,getCourses }) => {
   const [title, setTitle] = useState("");
 
   const addNewCourse = async (event) => {
@@ -26,11 +26,12 @@ const AddCourseModal = ({ hideAddCourseModal }) => {
     });
 
     if (res.status === 201) {
+      getCourses()
       swal({
-        title :  " دوره با موفقیت ثبت شد",
-        icon : 'success',
-        buttons: 'اوکی'
-      })
+        title: " دوره با موفقیت ثبت شد",
+        icon: "success",
+        buttons: "اوکی",
+      });
       setTitle("");
       hideAddCourseModal();
     }
