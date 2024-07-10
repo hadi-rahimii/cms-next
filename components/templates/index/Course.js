@@ -3,11 +3,20 @@ import { useState } from "react";
 import AddCourseModal from "./AddCourseModal";
 import styles from "@/styles/Course.module.css";
 
-const Course = () => {
+const Course = ({ courses }) => {
+  const [data, setData] = useState([...courses]);
   const [showAddCourseModal, setShowAddCourseModal] = useState(false);
 
   const hideAddCourseModal = () => setShowAddCourseModal(false);
 
+  const getCourses = async () => {
+    const res = await fetch("/api/courses");
+    const coursesData = res.json();
+    if (res.status === 200) {
+      console.log(coursesData);
+      setData(coursesData);
+    }
+  };
   return (
     <>
       <section className={styles.courses}>
@@ -22,16 +31,17 @@ const Course = () => {
           </a>
         </div>
         <ul className={styles.courses_list}>
-          <CoursesItem title="دوره PWA" image="/images/courses/PWA.jpg" />
-          <CoursesItem
-            title="دوره جاوا اسکریپت"
-            image="/images/courses/js.png"
-          />
+          {data.map((course) => (
+            <CoursesItem key={course._id} {...course} />
+          ))}
         </ul>
       </section>
 
       {showAddCourseModal && (
-        <AddCourseModal hideAddCourseModal={hideAddCourseModal} />
+        <AddCourseModal
+          getCourses={getCourses}
+          hideAddCourseModal={hideAddCourseModal}
+        />
       )}
     </>
   );
