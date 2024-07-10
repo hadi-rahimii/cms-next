@@ -1,5 +1,6 @@
 import DeleteModal from "@/components/templates/index/DeleteModal";
 import EditModal from "@/components/templates/index/EditModal";
+import swal from "sweetalert";
 import { useState } from "react";
 import styles from "@/styles/Course.module.css";
 const CoursesItem = ({ title, _id }) => {
