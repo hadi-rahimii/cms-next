@@ -3,8 +3,8 @@ import coursesModel from "@/models/course";
 import connectToDB from "@/utils/db";
 
 
-const index = ({course}) => {
-  return <Course data={course} />;
+const index = ({courses}) => {
+  return <Course courses={courses} />;
 };
 
 export async function getStaticProps(context) {
@@ -12,7 +12,7 @@ export async function getStaticProps(context) {
   const courses = await coursesModel.find({});
   return {
     props: {
-    course: JSON.parse(JSON.stringify(courses)),
+    courses: JSON.parse(JSON.stringify(courses)),
     revalidate:  60*60*12
     },
   };
